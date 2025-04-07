@@ -1,4 +1,4 @@
-const apiKey = 'bdbbc32d86d04896b38193532250504';// ${{ secrets.WEATHER_API_KEY }}
+const apiKey = '${{ secrets.WEATHER_API_KEY }}';
 const baseUrl = 'https://api.weatherapi.com/v1';
 
 document.querySelector('#getWeatherBtn').addEventListener('click', async () => {
@@ -6,7 +6,6 @@ document.querySelector('#getWeatherBtn').addEventListener('click', async () => {
 
   if (!city) return alert("Please enter a city.");
 
-  // 1. Текущая погода
   const currentUrl = `${baseUrl}/current.json?key=${apiKey}&q=${city}`;
   const currentRes = await fetch(currentUrl);
   const currentData = await currentRes.json();
@@ -22,7 +21,6 @@ document.querySelector('#getWeatherBtn').addEventListener('click', async () => {
   document.querySelector('#currentWeather').innerHTML = currentWeatherHtml;
   document.querySelector('#currentWeather').classList.add('fade-in');
 
-  // 2. Прогноз на 3 дня
   const forecastUrl = `${baseUrl}/forecast.json?key=${apiKey}&q=${city}&days=3`;
   const forecastRes = await fetch(forecastUrl);
   const forecastData = await forecastRes.json();
@@ -55,18 +53,20 @@ document.querySelector('#getWeatherBtn').addEventListener('click', async () => {
 
     const moonBtn = document.createElement('button');
     moonBtn.id = 'getMoonBtn';
+    moonBtn.classList.add('button');
     moonBtn.textContent = 'Get Moon Phase';
     document.querySelector('#moonContainer').appendChild(moonBtn);
-    document.querySelector('#moonContainer').style.display = 'block';
+    document.querySelector('#moonContainer').classList.add('visible');
 
     const mapBtn = document.createElement('button');
     mapBtn.id = 'getMapBtn';
+    mapBtn.classList.add('button');
     mapBtn.textContent = 'Get City Map';
     document.querySelector('#mapContainer').appendChild(mapBtn);
-    document.querySelector('#mapContainer').style.display = 'block';
+    document.querySelector('#mapContainer').classList.add('visible');
 
     moonBtn.addEventListener('click', async () => {
-      document.querySelector('#moonContainer').style.display = 'block';
+      document.querySelector('#moonContainer').classList.add('visible');
       const dateToday = new Date().toISOString().split('T')[0];
       const astroUrl = `${baseUrl}/astronomy.json?key=${apiKey}&q=${city}&dt=${dateToday}`;
       const astroRes = await fetch(astroUrl);
@@ -93,14 +93,13 @@ document.querySelector('#getWeatherBtn').addEventListener('click', async () => {
 
     mapBtn.addEventListener('click', async () => {
         const city = document.querySelector('#cityInput').value;
-      
-        // Получаем координаты города из API погоды
+
         const currentUrl = `${baseUrl}/current.json?key=${apiKey}&q=${city}`;
         const currentRes = await fetch(currentUrl);
         const currentData = await currentRes.json();
         const lat = currentData.location.lat;
         const lon = currentData.location.lon;
-      
+
         const mapInfo = document.createElement('div');
         mapInfo.innerHTML = `
           <h2>City Map</h2>
@@ -108,7 +107,7 @@ document.querySelector('#getWeatherBtn').addEventListener('click', async () => {
             width="100%" 
             height="400px" 
             src="https://www.openstreetmap.org/export/embed.html?bbox=${lon-0.1},${lat-0.1},${lon+0.1},${lat+0.1}&layer=mapnik&marker=${lon},${lat}" 
-            frameborder="0" style="border: 0; max-width: 100%; max-height: 400px;"></iframe>
+            frameborder="0" style="border: 0; max-width: 100%; max-height: 400px;" target="_blank"></iframe>
         `;
         mapInfo.classList.add('fade-in');
         document.querySelector('#mapContainer').appendChild(mapInfo);
