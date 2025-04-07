@@ -119,15 +119,17 @@ document.querySelector('#getWeatherBtn').addEventListener('click', async () => {
 });
 
 function getMoonPhaseImage(phase) {
+
+  const BASE_URL = import.meta.env.BASE_URL
   const phases = {
-    "New Moon": "/images/new_moon.png",
-    "Waxing Crescent": "/images/waxing_crescent.png",
-    "First Quarter": "/images/first_quarter.png",
-    "Waxing Gibbous": "/images/waxing_gibbous.png",
-    "Full Moon": "/images/full_moon.png",
-    "Waning Gibbous": "/images/waning_gibbous.png",
-    "Last Quarter": "/images/last_quarter.png",
-    "Waning Crescent": "/images/waning_crescent.png"
+    "New Moon": "images/new_moon.png",
+    "Waxing Crescent": "images/waxing_crescent.png",
+    "First Quarter": "images/first_quarter.png",
+    "Waxing Gibbous": "images/waxing_gibbous.png",
+    "Full Moon": "images/full_moon.png",
+    "Waning Gibbous": "images/waning_gibbous.png",
+    "Last Quarter": "images/last_quarter.png",
+    "Waning Crescent": "images/waning_crescent.png"
   };
-  return phases[phase] || "/images/new_moon.png";
+  return BASE_URL + phases[phase] || "images/new_moon.png";
 }
