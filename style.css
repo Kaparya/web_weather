@@ -1,0 +1,146 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #dceefb, #e0f7fa);
+    padding: 2rem;
+    text-align: center;
+    color: #333;
+}
+
+#app {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.weather-column {
+    flex: 1;
+    min-width: 300px;
+}
+
+.weather-input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 1rem;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    background-color: #4aa9ff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #007bff;
+}
+
+#moonContainer {
+  display: none;
+}
+
+.moon-container {
+    background: #f1f9ff;
+    border-left: 5px solid #007bff;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: left;
+    position: relative;
+    animation: fadeIn 1s ease;
+}
+
+.moon-container::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: -10px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #007bff;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+#currentWeather, #forecastWeather {
+  animation: fadeIn 1s ease;
+}
+
+.map-container {
+    background: #f1f9ff;
+    border-left: 5px solid #007bff;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: left;
+    position: relative;
+    animation: fadeIn 1s ease;
+    margin-top: 20px; /* Отступ между пузырьками */
+}
+
+.map-container::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: -10px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #007bff;
+}
+
+/* Десктопная версия */
+@media (min-width: 1024px) {
+    #app {
+        max-width: 900px;
+    }
+    .weather-column {
+        flex: 1;
+        min-width: 300px;
+    }
+}
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+    #app {
+        padding: 1rem;
+    }
+    .weather-column {
+        flex: 1 1 100%;
+        min-width: 100%;
+        margin-bottom: 1rem;
+    }
+    .weather-input, button {
+        font-size: 0.9rem;
+        padding: 0.4rem;
+        width: 100%;
+    }
+    #getWeatherBtn, #getMapBtn {
+        width: 100%;  /* Растягиваем обе кнопки */
+    }
+}

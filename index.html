@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="icon" href="images/weather-icon.png" type="image/png" />
+    <script type="module" src="/main.js" defer></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1 class="weather-title">Weather App</h1>
+      <input type="text" id="cityInput" class="weather-input" placeholder="Enter city" />
+      <button id="getWeatherBtn">Get Weather</button>
+      <button id="getMapBtn" style="display: none;">Get City Map</button>
+
+      <div class="weather-column">
+        <div id="currentWeather" class="fade-in"></div>
+        <div id="forecastWeather" class="fade-in"></div>
+      </div>
+      <div class="weather-column">
+        <div id="moonContainer" class="moon-container fade-in" style="display: none;"></div>
+        <div id="mapContainer" class="map-container fade-in" style="display: none;"></div>
+      </div>
+    </div>
+  </body>
+</html>
