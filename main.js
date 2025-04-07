@@ -1,4 +1,4 @@
-const apiKey = '${{ secrets.WEATHER_API_KEY }}';
+const apiKey = process.env.WEATHER_API_KEY;
 const baseUrl = 'https://api.weatherapi.com/v1';
 
 document.querySelector('#getWeatherBtn').addEventListener('click', async () => {
